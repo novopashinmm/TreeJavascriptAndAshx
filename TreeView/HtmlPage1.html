@@ -64,6 +64,24 @@
                 });
             });
         });
+
+        $(document).ready(function () {
+
+            $("body").delegate(".Content", "click", function () {
+                var request = { idDirectory: $(this).attr('path-id') };
+                $.ajax({
+                    url: "Handler1.ashx",
+                    data: request,
+                    dataType: "json",
+                    type: "POST",
+
+                    success: function (obj) {
+                            $("ul.Files").remove();
+                            $('#ForFiles').append(obj.Str);
+                    }
+                });
+            });
+        });
     </script>
 </head>
 <body>
